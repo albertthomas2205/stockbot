@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superadmin Login</title>
+    <style>
+    /* General Page Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container Styling */
+.container {
+    background: white;
+    padding: 40px 50px;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Heading */
+h2 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* Message Container */
+.message-container {
+    margin-bottom: 20px;
+}
+
+.message-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.message-container li {
+    color: red;
+    font-size: 14px;
+}
+
+/* Input Fields */
+input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #6a11cb; /* Blue border on focus */
+}
+
+/* Button */
+button {
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    padding: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #6a11cb;
+}
+
+/* Footer Section */
+.footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #777;
+}
+
+.footer a {
+    color: #2575fc;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Superadmin Login</h2>
+
+        <div class="message-container">
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li class="error">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="footer">
+            <p>Not a superadmin? <a href="#">Contact support</a>.</p>
+        </div>
+    </div>
+</body>
+</html>
