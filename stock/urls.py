@@ -107,6 +107,7 @@ urlpatterns = [
     path('notification/save-notification/', save_notification, name='save_notification'),
     path('notification/seen/<int:pk>/', mark_notification_as_seen, name='mark_notification_as_seen'),
     path('notifications/unseen/', get_unseen_notifications, name='get_unseen_notifications'),
+    path('notifications/all/', get_all_notifications, name='get_all_notifications'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

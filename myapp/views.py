@@ -1301,3 +1301,14 @@ def get_unseen_notifications(request):
         "message": "Unseen notifications fetched successfully.",
         "data": serializer.data
     }, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_all_notifications(request):
+    unseen_notifications = GeneralNotification.objects.order_by('-created_at')
+    serializer = GeneralNotificationSerializer(unseen_notifications, many=True)
+
+    return Response({
+        "status": "success",
+        "message": "Unseen notifications fetched successfully.",
+        "data": serializer.data
+    }, status=status.HTTP_200_OK)
