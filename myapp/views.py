@@ -736,11 +736,11 @@ def set_volume(request, stock_id, volume):
     try:
         volume = int(volume)  # Ensure volume is an integer
 
-        if 0 <= volume <= 150:
+        if 0 <= volume <= 100:
             boat_volumes[stock_id] = volume  # Store only the latest volume
             return JsonResponse({"message": "Volume updated", "stock_id": stock_id, "current_volume": volume})
         else:
-            return JsonResponse({"error": "Volume must be between 0 and 150"}, status=400)
+            return JsonResponse({"error": "Volume must be between 0 and 100"}, status=400)
 
     except ValueError:
         return JsonResponse({"error": "Invalid volume input. Volume must be an integer."}, status=400)
@@ -750,7 +750,7 @@ def get_volume(request, stock_id):
     Get the last updated volume of the robot.
     If no volume was set, return a default of 50.
     """
-    volume = boat_volumes.get(stock_id, 105)  # Return default volume if not set
+    volume = boat_volumes.get(stock_id, 80)  # Return default volume if not set
     return JsonResponse({"robo_id": stock_id, "current_volume": volume})
 
 
@@ -1096,6 +1096,7 @@ def list_schedulers(request):
             "message": str(e)
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+
 @api_view(['GET'])
 def check_current_scheduler(request):
     try:
@@ -1130,6 +1131,7 @@ def check_current_scheduler(request):
                 "message": "No creadentials available.",
             }, status=status.HTTP_404_NOT_FOUND)
         access_token = credentials.access_token
+
 
         if matching_now_tours.exists():
             customer_Data = CustomerConnectionData.objects.first()

@@ -64,7 +64,12 @@ class Command(BaseCommand):
 
         except Exception as e:
             self.stderr.write(f"Error: {str(access_token)}")
+            self.stderr.write(f"Error exception printed: {str(e)}")
+
+# tail -f /home/jetson/fetchstockbot.log
+# * * * * * /usr/bin/python3 /home/jetson/WAre/stock/manage.py fetchstockbot >> /home/jetson/fetchstockbot.log 2>&1
+
+# * * * * * /usr/bin/python3 /home/jetson/WAre/stock/manage.py fetchstockbot >> /home/jetson/fetchstockbot.log 2>&1
+# * * * * * cd /home/jetson/WAre/stock && /usr/bin/python3 manage.py fetchstockbot >> /home/jetson/fetchstockbot.log 2>&1
 
 
-# tail -f /home/ashwin/fetchstockbot.log
-# * * * * * /usr/bin/python3 /home/ashwin/Documents/I_HUB/stock/manage.py fetchstockbot >> /home/ashwin/fetchstockbot.log 2>&1
